@@ -1,0 +1,273 @@
+/* ============================================================
+   NueroUI Design Tokens — CSS Design System v1.0.0
+   Date: 2026-04-19
+   Output: Hermes01
+   ============================================================ */
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   1. ROOT VARIABLES
+   ============================================================ */
+:root {
+  /* ── Background Colors ── */
+  --color-bg-primary:    #0B0E17;   /* 主背景 */
+  --color-bg-secondary:  #131829;   /* 卡片/面板 */
+  --color-bg-elevated:  #1A2035;   /* 悬浮层 */
+  --color-bg-overlay:   #212A45;   /* 模态遮罩 */
+  --color-bg-input:     #0F121E;   /* 输入框 */
+  --color-bg-hover:     #1E2540;   /* 悬浮态 */
+  --color-bg-active:    #252D4A;   /* 激活态 */
+  --color-bg-disabled:  #0D1019;   /* 禁用背景 */
+
+  /* ── Accent Colors ── */
+  --color-accent-primary:    #00D4FF;   /* 科技青 — 主强调 */
+  --color-accent-secondary:   #7B61FF;   /* 能量紫 — 次强调 */
+  --color-accent-tertiary:   #FF6B35;   /* 警示橙 — 第三强调 */
+
+  /* ── Functional Colors ── */
+  --color-success:  #00E676;   /* 成功绿 */
+  --color-warning:  #FFB300;   /* 警告黄 */
+  --color-danger:   #FF3D71;   /* 危险红 */
+  --color-info:     #00D4FF;   /* 信息 */
+
+  /* ── Chinese Traditional Accent Colors ── */
+  --color-vermilion: #E8344A;   /* 朱红 */
+  --color-ink:       #1A1A2E;   /* 墨黑 */
+  --color-gold:      #C9A84C;   /* 墨金 */
+  --color-jade:      #00C48C;   /* 翠玉 */
+
+  /* ── Text Colors ── */
+  --color-text-primary:   #F0F4FF;   /* 主文字 */
+  --color-text-secondary: #8892B0;   /* 次级文字 */
+  --color-text-tertiary: #4A5578;   /* 占位符/禁用 */
+  --color-text-inverse:  #0B0E17;   /* 反色文字 */
+  --color-text-link:     #00D4FF;   /* 链接 */
+
+  /* ── Border Colors ── */
+  --color-border:       rgba(255,255,255,0.08);
+  --color-border-hover: rgba(0,212,255,0.35);
+  --color-border-focus: #00D4FF;
+  --color-border-active: rgba(123,97,255,0.5);
+  --color-border-subtle: rgba(255,255,255,0.04);
+
+  /* ── Glow Effects ── */
+  --glow-primary:    0 0 20px rgba(0,212,255,0.35);
+  --glow-secondary:  0 0 20px rgba(123,97,255,0.35);
+  --glow-success:    0 0 16px rgba(0,230,118,0.35);
+  --glow-warning:    0 0 16px rgba(255,179,0,0.35);
+  --glow-danger:     0 0 16px rgba(255,61,113,0.5);
+  --glow-gold:       0 0 20px rgba(201,168,76,0.3);
+
+  /* ── Shadows ── */
+  --shadow-xs:        0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm:        0 1px 4px rgba(0,0,0,0.5);
+  --shadow-md:        0 4px 12px rgba(0,0,0,0.55);
+  --shadow-lg:        0 8px 24px rgba(0,0,0,0.65);
+  --shadow-xl:        0 16px 48px rgba(0,0,0,0.75);
+  --shadow-inner:     inset 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-glow:      0 0 24px rgba(0,212,255,0.2);
+
+  /* ── Typography ── */
+  --font-display: 'Outfit', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+
+  /* Font sizes */
+  --text-2xs:   0.625rem;    /* 10px */
+  --text-xs:    0.75rem;     /* 12px */
+  --text-sm:    0.875rem;    /* 14px */
+  --text-base:  1rem;        /* 16px */
+  --text-lg:    1.125rem;    /* 18px */
+  --text-xl:    1.25rem;     /* 20px */
+  --text-2xl:   1.5rem;      /* 24px */
+  --text-3xl:   2rem;        /* 32px */
+  --text-4xl:   2.5rem;      /* 40px */
+  --text-5xl:   3rem;        /* 48px */
+
+  /* Font weights */
+  --font-light:    300;
+  --font-normal:   400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:  1.25;
+  --leading-snug:   1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.625;
+  --leading-loose:  2;
+
+  /* Letter spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.025em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.025em;
+  --tracking-wider:    0.05em;
+  --tracking-widest:  0.1em;
+
+  /* ── Spacing (4px base grid) ── */
+  --space-0:    0;
+  --space-px:   0.0625rem;  /* 1px */
+  --space-0-5:  0.125rem;   /* 2px */
+  --space-1:    0.25rem;    /* 4px */
+  --space-1-5:  0.375rem;   /* 6px */
+  --space-2:    0.5rem;     /* 8px */
+  --space-2-5:  0.625rem;   /* 10px */
+  --space-3:    0.75rem;    /* 12px */
+  --space-3-5:  0.875rem;   /* 14px */
+  --space-4:    1rem;       /* 16px */
+  --space-5:    1.25rem;    /* 20px */
+  --space-6:    1.5rem;     /* 24px */
+  --space-7:    1.75rem;    /* 28px */
+  --space-8:    2rem;       /* 32px */
+  --space-9:    2.25rem;    /* 36px */
+  --space-10:   2.5rem;     /* 40px */
+  --space-12:   3rem;       /* 48px */
+  --space-14:   3.5rem;     /* 56px */
+  --space-16:   4rem;       /* 64px */
+  --space-20:   5rem;       /* 80px */
+  --space-24:   6rem;       /* 96px */
+  --space-32:   8rem;       /* 128px */
+
+  /* ── Border Radius ── */
+  --radius-none:  0;
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-2xl:   32px;
+  --radius-full:  9999px;
+
+  /* ── Transitions ── */
+  --duration-instant:  0ms;
+  --duration-fast:     80ms;
+  --duration-normal:   150ms;
+  --duration-slow:     250ms;
+  --duration-slower:   400ms;
+  --duration-slowest:  600ms;
+
+  --ease-default:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ── Z-Index Scale ── */
+  --z-base:      0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-fixed:    300;
+  --z-modal:    400;
+  --z-toast:    500;
+  --z-tooltip:  600;
+
+  /* ── Component Sizes ── */
+  --height-xs:    24px;
+  --height-sm:    32px;
+  --height-md:    40px;
+  --height-lg:    48px;
+  --height-xl:    56px;
+  --height-2xl:   64px;
+
+  --width-sm:     80px;
+  --width-md:    120px;
+  --width-lg:    200px;
+  --width-xl:    280px;
+  --width-full:  100%;
+}
+
+/* ============================================================
+   2. LIGHT THEME OVERRIDES
+   ============================================================ */
+[data-theme="light"] {
+  --color-bg-primary:    #F0F4FF;
+  --color-bg-secondary:  #E4E8F0;
+  --color-bg-elevated:   #FFFFFF;
+  --color-bg-overlay:    #D8DDE8;
+  --color-bg-input:      #ECEFF5;
+  --color-bg-hover:      #E8EDF5;
+  --color-bg-active:     #DEE2EC;
+  --color-bg-disabled:   #EAECF0;
+
+  --color-text-primary:   #0B0E17;
+  --color-text-secondary: #4A5578;
+  --color-text-tertiary: #8892B0;
+
+  --color-border:       rgba(11,14,23,0.12);
+  --color-border-hover: rgba(0,212,255,0.5);
+  --color-border-focus: #00D4FF;
+
+  --shadow-xs:     0 1px 2px rgba(0,0,0,0.08);
+  --shadow-sm:     0 1px 4px rgba(0,0,0,0.1);
+  --shadow-md:     0 4px 12px rgba(0,0,0,0.12);
+  --shadow-lg:     0 8px 24px rgba(0,0,0,0.15);
+  --shadow-xl:     0 16px 48px rgba(0,0,0,0.2);
+
+  --glow-primary:   0 0 16px rgba(0,180,220,0.25);
+  --glow-secondary: 0 0 16px rgba(100,80,220,0.2);
+}
+
+/* ============================================================
+   3. HIGH CONTRAST OVERRIDES (Accessibility)
+   ============================================================ */
+[data-theme="high-contrast"] {
+  --color-bg-primary:    #000000;
+  --color-bg-secondary:  #111111;
+  --color-bg-elevated:   #1A1A1A;
+  --color-text-primary:  #FFFFFF;
+  --color-text-secondary:#CCCCCC;
+  --color-accent-primary:#00FFFF;
+  --color-border:       rgba(255,255,255,0.3);
+  --color-border-focus:  #00FFFF;
+  --radius-sm:           2px;
+  --radius-md:           4px;
+}
+
+/* ============================================================
+   4. LOW POWER / REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast:     0ms;
+    --duration-normal:   0ms;
+    --duration-slow:     0ms;
+    --duration-slower:   0ms;
+    --duration-slowest:  0ms;
+  }
+}
+
+/* ============================================================
+   5. OUTDOOR / HIGH BRIGHTNESS OVERRIDES
+   ============================================================ */
+[data-theme="outdoor"] {
+  --color-bg-primary:    #E8ECEF;
+  --color-bg-secondary:  #DDE1E8;
+  --color-bg-elevated:   #F0F4FF;
+  --color-text-primary:  #0A0D15;
+  --color-text-secondary:#3A4055;
+  --color-border:       rgba(10,13,21,0.2);
+  --color-border-hover:  rgba(0,140,180,0.6);
+}
+
+/* ============================================================
+   6. CAR HUD / AUTOMOTIVE MODE
+   ============================================================ */
+[data-theme="car-hud"] {
+  --text-base:  1.125rem;   /* 18px base */
+  --text-lg:    1.375rem;    /* 22px */
+  --text-xl:    1.625rem;    /* 26px */
+  --text-2xl:   2rem;        /* 32px */
+  --height-md:  48px;
+  --height-lg:  56px;
+  --height-xl:  64px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --duration-slow:  400ms;
+  --duration-slower: 600ms;
+}
