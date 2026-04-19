@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NueroUI — Components Showcase</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="nuero-ui.css">
+  <link rel="stylesheet" href="motion.css">
+  <style>
+    body { margin: 0; background: var(--color-bg-primary); color: var(--color-text-primary); font-family: var(--font-body); }
+    .showcase { max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--space-6); }
+    .showcase-header { text-align: center; margin-bottom: var(--space-12); padding: var(--space-12) 0; }
+    .showcase-header h1 { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--font-bold); background: linear-gradient(135deg, #00D4FF, #7B61FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 var(--space-3); }
+    .showcase-header p { color: var(--color-text-secondary); font-size: var(--text-lg); margin: 0; }
+    .version-badge { display: inline-block; padding: var(--space-1) var(--space-3); background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: var(--radius-full); color: var(--color-accent-primary); font-size: var(--text-xs); font-weight: var(--font-semibold); }
+    .section { margin-bottom: var(--space-12); }
+    .section-title { font-size: var(--text-xl); font-weight: var(--font-semibold); color: var(--color-text-primary); margin-bottom: var(--space-6); padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: var(--space-3); }
+    .section-title::before { content: ''; width: 4px; height: 20px; background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-secondary)); border-radius: 2px; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-bottom: var(--space-4); padding: var(--space-5); background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+    .demo-label { font-size: var(--text-xs); color: var(--color-text-tertiary); min-width: 80px; }
+    .demo-group { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+    .theme-switcher { display: flex; gap: var(--space-2); margin-bottom: var(--space-8); justify-content: center; }
+    .theme-btn { padding: var(--space-2) var(--space-4); background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text-secondary); cursor: pointer; font-size: var(--text-sm); transition: all var(--duration-normal); }
+    .theme-btn:hover { border-color: var(--color-border-hover); color: var(--color-text-primary); }
+    .theme-btn.active { border-color: var(--color-accent-primary); color: var(--color-accent-primary); background: rgba(0,212,255,0.05); }
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: var(--space-3); }
+    .icon-demo { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-4); background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); transition: all var(--duration-normal); cursor: pointer; }
+    .icon-demo:hover { border-color: var(--color-border-hover); background: var(--color-bg-elevated); transform: translateY(-2px); }
+    .icon-demo svg { color: var(--color-accent-primary); transition: color var(--duration-normal); }
+    .icon-demo:hover svg { color: var(--color-accent-secondary); }
+    .icon-demo span { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+    .card-demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-4); }
+    .table-wrapper { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+    .spinner-row { display: flex; gap: var(--space-6); align-items: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+<div class="showcase">
+
+  <!-- Header -->
+  <div class="showcase-header">
+    <div style="margin-bottom:var(--space-4)"><span class="version-badge">v1.0.0</span></div>
+    <h1>NueroUI</h1>
+    <p>稳重 · 数字时代 · 全平台设计系统</p>
+    <p style="margin-top:var(--space-2);font-size:var(--text-sm);color:var(--color-text-tertiary)">Hermes01 Output · 2026-04-19</p>
+  </div>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button class="theme-btn active" onclick="document.documentElement.setAttribute('data-theme','dark')">🌙 深色</button>
+    <button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme','light')">☀️ 浅色</button>
+    <button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme','high-contrast')">◐ 高对比</button>
+    <button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme','outdoor')">🌤 户外</button>
+    <button class="theme-btn" onclick="document.documentElement.setAttribute('data-theme','car-hud')">🚗 车载</button>
+  </div>
+
+  <!-- Color Palette -->
+  <div class="section">
+    <div class="section-title">色彩系统 — Color System</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--space-3)">
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#0B0E17;border-radius:4px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.1)"></div><div style="font-size:11px;color:#F0F4FF;font-weight:600">#0B0E17</div><div style="font-size:10px;color:#8892B0">深海蓝黑</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#00D4FF;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#00D4FF;font-weight:600">#00D4FF</div><div style="font-size:10px;color:#8892B0">科技青</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#7B61FF;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#7B61FF;font-weight:600">#7B61FF</div><div style="font-size:10px;color:#8892B0">能量紫</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#00E676;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#00E676;font-weight:600">#00E676</div><div style="font-size:10px;color:#8892B0">成功绿</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#FF3D71;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#FF3D71;font-weight:600">#FF3D71</div><div style="font-size:10px;color:#8892B0">危险红</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#FFB300;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#FFB300;font-weight:600">#FFB300</div><div style="font-size:10px;color:#8892B0">警告黄</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#E8344A;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#E8344A;font-weight:600">#E8344A</div><div style="font-size:10px;color:#8892B0">朱红</div></div>
+      <div style="padding:var(--space-3);background:#0B0E17;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)"><div style="width:100%;height:48px;background:#C9A84C;border-radius:4px;margin-bottom:8px"></div><div style="font-size:11px;color:#C9A84C;font-weight:600">#C9A84C</div><div style="font-size:10px;color:#8892B0">墨金</div></div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="section">
+    <div class="section-title">按钮 — Buttons</div>
+    <div class="demo-row">
+      <span class="demo-label">Primary</span>
+      <div class="demo-group">
+        <button class="nui-btn nui-btn--primary">主要按钮</button>
+        <button class="nui-btn nui-btn--primary nui-btn--sm">小按钮</button>
+        <button class="nui-btn nui-btn--primary nui-btn--xs">超小</button>
+        <button class="nui-btn nui-btn--primary nui-btn--icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="nui-btn nui-btn--primary" disabled>禁用</button>
+        <button class="nui-btn nui-btn--primary nui-btn--loading">加载中</button>
+      </div>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">Secondary</span>
+      <div class="demo-group">
+        <button class="nui-btn nui-btn--secondary">次级按钮</button>
+        <button class="nui-btn nui-btn--secondary nui-btn--lg">大按钮</button>
+      </div>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">Ghost</span>
+      <div class="demo-group">
+        <button class="nui-btn nui-btn--ghost">幽灵按钮</button>
+        <button class="nui-btn nui-btn--ghost nui-btn--icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+    <div class="demo-row">
+      <span class="demo-label">Danger</span>
+      <div class="demo-group">
+        <button class="nui-btn nui-btn--danger">危险操作</button>
+        <button class="nui-btn nui-btn--outline">描边按钮</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inputs -->
+  <div class="section">
+    <div class="section-title">输入框 — Inputs</div>
+    <div class="demo-row" style="flex-direction:column;align-items:flex-start;gap:var(--space-4)">
+      <div class="nui-input-wrapper" style="width:320px">
+        <label class="nui-label">默认输入框</label>
+        <input class="nui-input" placeholder="请输入内容..." type="text">
+      </div>
+      <div class="nui-input-wrapper" style="width:320px">
+        <label class="nui-label">密码输入</label>
+        <input class="nui-input" placeholder="输入密码" type="password">
+      </div>
+      <div class="nui-input-wrapper" style="width:320px">
+        <label class="nui-label">错误状态</label>
+        <input class="nui-input nui-input--error" value="格式错误" type="text">
+        <span class="nui-error-msg">⚠ 输入内容不符合要求</span>
+      </div>
+      <div class="nui-input-wrapper" style="width:320px">
+        <label class="nui-label">禁用状态</label>
+        <input class="nui-input" value="不可修改" type="text" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="section">
+    <div class="section-title">徽标 — Badges</div>
+    <div class="demo-row">
+      <div class="demo-group" style="flex-wrap:wrap;gap:var(--space-3)">
+        <span class="nui-badge nui-badge--default">默认</span>
+        <span class="nui-badge nui-badge--primary">科技青</span>
+        <span class="nui-badge nui-badge--success">成功</span>
+        <span class="nui-badge nui-badge--warning">警告</span>
+        <span class="nui-badge nui-badge--danger">危险</span>
+        <span class="nui-badge nui-badge--gold">墨金</span>
+        <span class="nui-badge nui-badge--primary nui-badge--dot"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkbox / Radio / Switch -->
+  <div class="section">
+    <div class="section-title">选择控件 — Selection Controls</div>
+    <div class="demo-row" style="flex-direction:column;align-items:flex-start;gap:var(--space-4)">
+      <div style="display:flex;gap:var(--space-8);flex-wrap:wrap">
+        <label class="nui-check">
+          <input type="checkbox" checked>
+          <span class="nui-check__box"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="nui-check__text">同意用户协议</span>
+        </label>
+        <label class="nui-check">
+          <input type="checkbox">
+          <span class="nui-check__box"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="nui-check__text">未选中</span>
+        </label>
+        <label class="nui-check">
+          <input type="checkbox" disabled>
+          <span class="nui-check__box"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="nui-check__text">禁用</span>
+        </label>
+      </div>
+      <div style="display:flex;gap:var(--space-8);flex-wrap:wrap">
+        <label class="nui-check nui-check--radio">
+          <input type="radio" name="demo-radio" checked>
+          <span class="nui-check__box"></span>
+          <span class="nui-check__text">选项 A</span>
+        </label>
+        <label class="nui-check nui-check--radio">
+          <input type="radio" name="demo-radio">
+          <span class="nui-check__box"></span>
+          <span class="nui-check__text">选项 B</span>
+        </label>
+      </div>
+      <div style="display:flex;gap:var(--space-8);flex-wrap:wrap">
+        <label class="nui-switch">
+          <input type="checkbox" checked>
+          <span class="nui-switch__track"><span class="nui-switch__thumb"></span></span>
+          <span class="nui-check__text">开关（已开启）</span>
+        </label>
+        <label class="nui-switch">
+          <input type="checkbox">
+          <span class="nui-switch__track"><span class="nui-switch__thumb"></span></span>
+          <span class="nui-check__text">开关（已关闭）</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="section">
+    <div class="section-title">卡片 — Cards</div>
+    <div class="card-demo-grid">
+      <div class="nui-card">
+        <div style="font-size:var(--text-xs);color:var(--color-accent-primary);font-weight:var(--font-medium);margin-bottom:var(--space-2)">系统通知</div>
+        <div style="font-size:var(--text-lg);font-weight:var(--font-semibold);color:var(--color-text-primary);margin-bottom:var(--space-3)">网络连接已恢复</div>
+        <div style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:var(--leading-relaxed)">检测到网络恢复正常，所有服务已自动重新连接。详细日志请查看监控面板。</div>
+        <div style="margin-top:var(--space-4);display:flex;gap:var(--space-2)">
+          <span class="nui-badge nui-badge--success nui-badge--dot">已解决</span>
+          <span class="nui-badge nui-badge--default">2分钟前</span>
+        </div>
+      </div>
+      <div class="nui-card nui-card--elevated">
+        <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4)">
+          <div class="nui-avatar nui-avatar--md">晓</div>
+          <div>
+            <div style="font-size:var(--text-sm);font-weight:var(--font-semibold);color:var(--color-text-primary)">张晓</div>
+            <div style="font-size:var(--text-xs);color:var(--color-text-tertiary)">产品负责人</div>
+          </div>
+        </div>
+        <div style="font-size:var(--text-sm);color:var(--color-text-secondary)">完成了 NueroUI v1.0 的设计规范文档，正在进行组件库的构建工作。</div>
+        <div class="nui-divider" style="margin:var(--space-4) 0"></div>
+        <div style="display:flex;gap:var(--space-3)">
+          <button class="nui-btn nui-btn--primary nui-btn--sm">查看详情</button>
+          <button class="nui-btn nui-btn--ghost nui-btn--sm">忽略</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="section">
+    <div class="section-title">表格 — Table</div>
+    <div class="table-wrapper">
+      <table class="nui-table nui-table--striped">
+        <thead>
+          <tr>
+            <th>项目名称</th>
+            <th>版本</th>
+            <th>状态</th>
+            <th>负责人</th>
+            <th>更新日期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NueroUI</td>
+            <td><span class="nui-badge nui-badge--primary">v1.0.0</span></td>
+            <td><span class="nui-badge nui-badge--success nui-badge--dot">已发布</span></td>
+            <td>张晓</td>
+            <td>2026-04-19</td>
+          </tr>
+          <tr>
+            <td>NueroNote</td>
+            <td><span class="nui-badge nui-badge--primary">v1.3.0</span></td>
+            <td><span class="nui-badge nui-badge--warning nui-badge--dot">开发中</span></td>
+            <td>李明</td>
+            <td>2026-04-14</td>
+          </tr>
+          <tr>
+            <td>dev-agent</td>
+            <td><span class="nui-badge nui-badge--primary">v0.1.0</span></td>
+            <td><span class="nui-badge nui-badge--success nui-badge--dot">已发布</span></td>
+            <td>王强</td>
+            <td>2026-04-19</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="section">
+    <div class="section-title">进度条 — Progress</div>
+    <div class="demo-row" style="flex-direction:column;align-items:flex-start;gap:var(--space-4)">
+      <div style="width:400px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2)"><span style="font-size:var(--text-sm);color:var(--color-text-secondary)">项目进度</span><span style="font-size:var(--text-sm);color:var(--color-accent-primary);font-weight:var(--font-medium)">68%</span></div>
+        <div class="nui-progress"><div class="nui-progress__bar" style="width:68%"></div></div>
+      </div>
+      <div style="width:400px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-2)"><span style="font-size:var(--text-sm);color:var(--color-text-secondary)">小型</span><span style="font-size:var(--text-sm);color:var(--color-success);font-weight:var(--font-medium)">100%</span></div>
+        <div class="nui-progress nui-progress--sm"><div class="nui-progress__bar" style="width:100%;background:var(--color-success)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spinners -->
+  <div class="section">
+    <div class="section-title">加载动画 — Spinners</div>
+    <div class="demo-row">
+      <div class="spinner-row">
+        <div class="nui-spinner nui-spinner--sm"></div>
+        <div class="nui-spinner nui-spinner--md"></div>
+        <div class="nui-spinner nui-spinner--lg"></div>
+        <div class="nui-spinner nui-spinner--xl"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skeletons -->
+  <div class="section">
+    <div class="section-title">骨架屏 — Skeleton</div>
+    <div class="demo-row" style="flex-direction:column;gap:var(--space-4)">
+      <div style="display:flex;gap:var(--space-4);align-items:center">
+        <div class="nui-skeleton nui-avatar nui-avatar--md"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:var(--space-2)">
+          <div class="nui-skeleton" style="height:14px;width:60%"></div>
+          <div class="nui-skeleton" style="height:12px;width:40%"></div>
+        </div>
+      </div>
+      <div class="nui-skeleton" style="height:80px;width:100%"></div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="section">
+    <div class="section-title">标签页 — Tabs</div>
+    <div class="demo-row" style="flex-direction:column">
+      <div class="nui-tabs" id="demo-tabs">
+        <button class="nui-tab nui-tab--active" onclick="switchTab(this)">概述</button>
+        <button class="nui-tab" onclick="switchTab(this)">组件</button>
+        <button class="nui-tab" onclick="switchTab(this)">资源</button>
+        <button class="nui-tab" onclick="switchTab(this)">更新日志</button>
+      </div>
+      <div class="nui-tabs__content" id="tab-content">
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm)">NueroUI 是一套面向全硬件平台的设计语言体系。视觉以深邃蓝黑为主基调，传达沉稳可靠的专业气质。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icons (first 24) -->
+  <div class="section">
+    <div class="section-title">图标系统 — Icons (24/48)</div>
+    <div class="icon-grid">
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10"/></svg><span>home</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg><span>search</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg><span>user</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span>settings</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg><span>bell</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg><span>menu</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg><span>close</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>check</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><span>chevron-down</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span>plus</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span>eye</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>lock</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><span>send</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span>message</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg><span>mail</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>heart</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>star</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>alert-circle</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9l6 6M15 9l-6 6"/></svg><span>x-circle</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>activity</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg><span>zap</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3H3a2 2 0 00-2 2v12a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2zM8 21h8M12 17v4"/></svg><span>monitor</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg><span>smartphone</span></div>
+      <div class="icon-demo"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><span>phone</span></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="section">
+    <div class="section-title">消息通知 — Toast</div>
+    <div class="demo-row">
+      <button class="nui-btn nui-btn--primary nui-btn--sm" onclick="showToast('success')">成功</button>
+      <button class="nui-btn nui-btn--danger nui-btn--sm" onclick="showToast('error')">错误</button>
+      <button class="nui-btn nui-btn--secondary nui-btn--sm" onclick="showToast('warning')">警告</button>
+      <button class="nui-btn nui-btn--ghost nui-btn--sm" onclick="showToast('info')">信息</button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="section">
+    <div class="section-title">导航 — Navigation</div>
+    <div style="margin-bottom:var(--space-4)">
+      <nav class="nui-navbar">
+        <a class="nui-navbar__logo" href="#">NueroUI</a>
+        <div class="nui-navbar__links">
+          <a class="nui-navbar__link nui-navbar__link--active" href="#">概览</a>
+          <a class="nui-navbar__link" href="#">组件</a>
+          <a class="nui-navbar__link" href="#">资源</a>
+          <a class="nui-navbar__link" href="#">关于</a>
+        </div>
+        <div class="nui-navbar__actions">
+          <button class="nui-btn nui-btn--primary nui-btn--sm">开始使用</button>
+        </div>
+      </nav>
+    </div>
+    <div style="display:flex;gap:var(--space-6)">
+      <div class="nui-sidebar" style="height:200px">
+        <div class="nui-sidebar__item nui-sidebar__item--active">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10"/></svg>
+          概览
+        </div>
+        <div class="nui-sidebar__item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          组件
+        </div>
+        <div class="nui-sidebar__item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          资源
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="nui-bottom-nav" style="position:static">
+          <div class="nui-bottom-nav__item nui-bottom-nav__item--active">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10"/></svg>
+            首页
+          </div>
+          <div class="nui-bottom-nav__item">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            组件
+          </div>
+          <div class="nui-bottom-nav__item">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+            通知
+          </div>
+          <div class="nui-bottom-nav__item">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            我的
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typography -->
+  <div class="section">
+    <div class="section-title">字体系统 — Typography</div>
+    <div style="display:flex;flex-direction:column;gap:var(--space-4)">
+      <div style="font-family:var(--font-display);font-size:var(--text-4xl);font-weight:700;background:linear-gradient(135deg,#00D4FF,#7B61FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Outfit Display — NueroUI</div>
+      <div style="font-family:var(--font-body);font-size:var(--text-xl);color:var(--color-text-primary)">Inter Body Text — 数字时代的设计语言</div>
+      <div style="font-family:var(--font-mono);font-size:var(--text-base);color:var(--color-accent-primary)">JetBrains Mono — const nuero = "设计系统 v1.0"</div>
+      <div style="font-size:var(--text-3xl);font-weight:var(--font-bold);color:var(--color-text-primary)">H1 · 页面主标题</div>
+      <div style="font-size:var(--text-2xl);font-weight:var(--font-semibold);color:var(--color-text-primary)">H2 · 区块标题</div>
+      <div style="font-size:var(--text-xl);font-weight:var(--font-medium);color:var(--color-text-primary)">H3 · 小标题</div>
+      <div style="font-size:var(--text-base);color:var(--color-text-secondary)">正文 · NueroUI 为全平台而生，从深色桌面到户外强光，从车载 HUD 到低功耗嵌入式屏幕。</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast Container -->
+<div class="nui-toast-container" id="toast-container"></div>
+
+<script>
+function showToast(type) {
+  const msgs = {
+    success: { title: '保存成功', msg: '您的更改已自动保存。', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>' },
+    error:   { title: '操作失败', msg: '请检查网络连接后重试。', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>' },
+    warning: { title: '注意', msg: '此操作不可撤销，请确认。', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>' },
+    info:    { title: '系统公告', msg: 'NueroUI v1.0.0 正式发布。', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>' }
+  };
+  const { title, msg, icon } = msgs[type];
+  const toast = document.createElement('div');
+  toast.className = `nui-toast nui-toast--${type}`;
+  toast.innerHTML = `<div class="nui-toast__icon">${icon}</div><div class="nui-toast__content"><div class="nui-toast__title">${title}</div><div class="nui-toast__msg">${msg}</div></div><button class="nui-toast__close" onclick="this.parentElement.remove()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>`;
+  document.getElementById('toast-container').appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+function switchTab(el) {
+  document.querySelectorAll('.nui-tab').forEach(t => t.classList.remove('nui-tab--active'));
+  el.classList.add('nui-tab--active');
+}
+</script>
+</body>
+</html>
