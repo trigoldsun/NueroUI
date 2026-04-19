@@ -1,0 +1,610 @@
+{
+  "name": "NueroUI Icons",
+  "version": "1.0.0",
+  "date": "2026-04-19",
+  "output": "Hermes01",
+  "category": "core",
+  "icons": [
+    {
+      "name": "home",
+      "tags": [
+        "首页",
+        "home",
+        "main"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "search",
+      "tags": [
+        "搜索",
+        "search",
+        "find"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "user",
+      "tags": [
+        "用户",
+        "user",
+        "account",
+        "profile"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "settings",
+      "tags": [
+        "设置",
+        "settings",
+        "config",
+        "gear"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "bell",
+      "tags": [
+        "通知",
+        "bell",
+        "alert",
+        "alarm"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "menu",
+      "tags": [
+        "菜单",
+        "menu",
+        "hamburger",
+        "list"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "close",
+      "tags": [
+        "关闭",
+        "close",
+        "x",
+        "cancel"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "check",
+      "tags": [
+        "确认",
+        "check",
+        "done",
+        "tick",
+        "勾选"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "chevron-down",
+      "tags": [
+        "下拉",
+        "chevron",
+        "arrow",
+        "展开"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "chevron-right",
+      "tags": [
+        "右箭头",
+        "chevron",
+        "arrow",
+        "前进"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "chevron-left",
+      "tags": [
+        "左箭头",
+        "chevron",
+        "arrow",
+        "后退"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "plus",
+      "tags": [
+        "添加",
+        "plus",
+        "add",
+        "新增"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "minus",
+      "tags": [
+        "减少",
+        "minus",
+        "remove",
+        "删除"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "refresh",
+      "tags": [
+        "刷新",
+        "refresh",
+        "reload",
+        "sync",
+        "同步"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "download",
+      "tags": [
+        "下载",
+        "download",
+        "save"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "upload",
+      "tags": [
+        "上传",
+        "upload",
+        "send"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "eye",
+      "tags": [
+        "查看",
+        "eye",
+        "view",
+        "可见"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "eye-off",
+      "tags": [
+        "隐藏",
+        "eye-off",
+        "hidden",
+        "不可见"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "lock",
+      "tags": [
+        "锁定",
+        "lock",
+        "secure",
+        "安全"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "unlock",
+      "tags": [
+        "解锁",
+        "unlock",
+        "open"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "copy",
+      "tags": [
+        "复制",
+        "copy",
+        "clipboard"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "trash",
+      "tags": [
+        "删除",
+        "trash",
+        "delete",
+        "bin",
+        "垃圾桶"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "edit",
+      "tags": [
+        "编辑",
+        "edit",
+        "pencil",
+        "modify",
+        "编辑"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "info",
+      "tags": [
+        "信息",
+        "info",
+        "information"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "help-circle",
+      "tags": [
+        "帮助",
+        "help",
+        "question",
+        "support"
+      ],
+      "category": "basic"
+    },
+    {
+      "name": "monitor",
+      "tags": [
+        "显示器",
+        "monitor",
+        "display",
+        "desktop"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "smartphone",
+      "tags": [
+        "手机",
+        "smartphone",
+        "phone",
+        "mobile",
+        "手机"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "tablet",
+      "tags": [
+        "平板",
+        "tablet",
+        "iPad"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "cpu",
+      "tags": [
+        "芯片",
+        "cpu",
+        "processor",
+        "chip"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "wifi",
+      "tags": [
+        "WiFi",
+        "wifi",
+        "wireless",
+        "网络"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "bluetooth",
+      "tags": [
+        "蓝牙",
+        "bluetooth",
+        "wireless"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "battery",
+      "tags": [
+        "电池",
+        "battery",
+        "power",
+        "电量"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "camera",
+      "tags": [
+        "相机",
+        "camera",
+        "photo",
+        "拍照"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "mic",
+      "tags": [
+        "麦克风",
+        "mic",
+        "microphone",
+        "录音"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "speaker",
+      "tags": [
+        "扬声器",
+        "speaker",
+        "audio",
+        "声音"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "server",
+      "tags": [
+        "服务器",
+        "server",
+        "host",
+        "机房"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "hard-drive",
+      "tags": [
+        "硬盘",
+        "hard-drive",
+        "storage",
+        "disk"
+      ],
+      "category": "device"
+    },
+    {
+      "name": "send",
+      "tags": [
+        "发送",
+        "send",
+        "message",
+        "推送"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "message",
+      "tags": [
+        "消息",
+        "message",
+        "chat",
+        "私信"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "mail",
+      "tags": [
+        "邮件",
+        "mail",
+        "email",
+        "信封"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "phone",
+      "tags": [
+        "电话",
+        "phone",
+        "call",
+        "拨打"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "bookmark",
+      "tags": [
+        "书签",
+        "bookmark",
+        "mark",
+        "收藏"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "share",
+      "tags": [
+        "分享",
+        "share",
+        "转发"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "link",
+      "tags": [
+        "链接",
+        "link",
+        "chain",
+        "url"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "flag",
+      "tags": [
+        "标记",
+        "flag",
+        "举报",
+        "国旗"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "heart",
+      "tags": [
+        "喜欢",
+        "heart",
+        "like",
+        "收藏",
+        "心"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "star",
+      "tags": [
+        "收藏",
+        "star",
+        "rating",
+        "星级"
+      ],
+      "category": "communication"
+    },
+    {
+      "name": "alert-circle",
+      "tags": [
+        "警告",
+        "alert",
+        "error",
+        "圆形警告"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "check-circle",
+      "tags": [
+        "成功",
+        "check-circle",
+        "done",
+        "圆形勾选"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "x-circle",
+      "tags": [
+        "错误",
+        "x-circle",
+        "wrong",
+        "失败"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "alert-triangle",
+      "tags": [
+        "三角形警告",
+        "alert-triangle",
+        "注意"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "loader",
+      "tags": [
+        "加载",
+        "loader",
+        "loading",
+        "spinner",
+        "旋转"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "zap",
+      "tags": [
+        "闪电",
+        "zap",
+        "flash",
+        "快速"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "activity",
+      "tags": [
+        "活动",
+        "activity",
+        "pulse",
+        "脉搏"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "trending-up",
+      "tags": [
+        "上升",
+        "trending-up",
+        "增长",
+        "上涨"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "trending-down",
+      "tags": [
+        "下降",
+        "trending-down",
+        "下降",
+        "下跌"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "filter",
+      "tags": [
+        "筛选",
+        "filter",
+        "filter",
+        "过滤"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "sort",
+      "tags": [
+        "排序",
+        "sort",
+        "order"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "grid",
+      "tags": [
+        "网格",
+        "grid",
+        "宫格"
+      ],
+      "category": "status"
+    },
+    {
+      "name": "list",
+      "tags": [
+        "列表",
+        "list",
+        "清单"
+      ],
+      "category": "status"
+    }
+  ],
+  "variants": [
+    "outline",
+    "filled"
+  ],
+  "viewBox": "0 0 24 24",
+  "strokeWidth": 2,
+  "strokeLinecap": "round",
+  "strokeLinejoin": "round"
+}
