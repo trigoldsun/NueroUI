@@ -1,0 +1,387 @@
+/* ============================================================
+   NueroUI Motion System — 动效规范 v1.0.0
+   Date: 2026-04-19 | Output: Hermes01
+   ============================================================ */
+
+/* ============================================================
+   1. PAGE ENTER / EXIT ANIMATIONS
+   ============================================================ */
+
+/* Fade in */
+@keyframes nui-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.nui-animate-fade-in {
+  animation: nui-fade-in var(--duration-slower) var(--ease-out);
+}
+
+/* Fade + slide up */
+@keyframes nui-fade-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nui-animate-slide-up {
+  animation: nui-fade-slide-up var(--duration-slower) var(--ease-out);
+}
+
+/* Fade + slide down */
+@keyframes nui-fade-slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nui-animate-slide-down {
+  animation: nui-fade-slide-down var(--duration-slower) var(--ease-out);
+}
+
+/* Scale in */
+@keyframes nui-scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.nui-animate-scale-in {
+  animation: nui-scale-in var(--duration-slower) var(--ease-spring);
+}
+
+/* Slide in from left */
+@keyframes nui-slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.nui-animate-slide-left {
+  animation: nui-slide-in-left var(--duration-slower) var(--ease-out);
+}
+
+/* Slide in from right */
+@keyframes nui-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.nui-animate-slide-right {
+  animation: nui-slide-in-right var(--duration-slower) var(--ease-out);
+}
+
+/* Page enter — staggered children */
+.nui-stagger > * {
+  opacity: 0;
+  animation: nui-fade-slide-up var(--duration-slower) var(--ease-out) forwards;
+}
+.nui-stagger > *:nth-child(1)  { animation-delay: 0ms; }
+.nui-stagger > *:nth-child(2)  { animation-delay: 60ms; }
+.nui-stagger > *:nth-child(3)  { animation-delay: 120ms; }
+.nui-stagger > *:nth-child(4)  { animation-delay: 180ms; }
+.nui-stagger > *:nth-child(5)  { animation-delay: 240ms; }
+.nui-stagger > *:nth-child(6)  { animation-delay: 300ms; }
+.nui-stagger > *:nth-child(7)  { animation-delay: 360ms; }
+.nui-stagger > *:nth-child(8)  { animation-delay: 420ms; }
+
+/* ============================================================
+   2. MICRO INTERACTIONS — BUTTON
+   ============================================================ */
+
+.nui-interactive {
+  transition: all var(--duration-normal) var(--ease-default);
+  cursor: pointer;
+}
+.nui-interactive:hover {
+  transition-duration: var(--duration-fast);
+}
+
+/* Button press */
+.nui-btn-press:active {
+  transform: scale(0.97);
+  transition-duration: var(--duration-instant) !important;
+}
+
+/* Button hover lift */
+.nui-btn-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--glow-primary);
+}
+.nui-btn-lift:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   3. MICRO INTERACTIONS — CARD
+   ============================================================ */
+
+.nui-card-hover {
+  transition: transform var(--duration-slow) var(--ease-default),
+              box-shadow var(--duration-slow) var(--ease-default),
+              border-color var(--duration-slow) var(--ease-default);
+  cursor: pointer;
+}
+.nui-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(0,212,255,0.08);
+  border-color: rgba(0,212,255,0.25);
+}
+
+/* Glow pulse on hover */
+.nui-card-glow:hover {
+  box-shadow: var(--shadow-xl), var(--glow-primary);
+}
+
+/* ============================================================
+   4. MICRO INTERACTIONS — INPUT
+   ============================================================ */
+
+.nui-input-animated {
+  transition: border-color var(--duration-normal) var(--ease-default),
+              box-shadow   var(--duration-normal) var(--ease-default),
+              background   var(--duration-normal) var(--ease-default);
+}
+.nui-input-animated:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.15);
+}
+
+/* ============================================================
+   5. SKELETON LOADING
+   ============================================================ */
+
+.nui-skeleton-wave {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-overlay);
+}
+.nui-skeleton-wave::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.04) 40%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 60%,
+    transparent 100%
+  );
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+@keyframes skeleton-wave {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Skeleton pulse (alternate) */
+.nui-skeleton-pulse {
+  animation: skeleton-pulse 2s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+/* ============================================================
+   6. PROGRESS BAR ANIMATIONS
+   ============================================================ */
+
+/* Shimmer sweep on progress bar */
+.nui-progress-sweep .nui-progress__bar::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  animation: progress-sweep 1.5s ease-in-out infinite;
+}
+@keyframes progress-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(400%); }
+}
+
+/* Determinate — smooth width transition */
+.nui-progress-determinate .nui-progress__bar {
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+/* Indeterminate */
+.nui-progress-indeterminate .nui-progress__bar {
+  width: 40% !important;
+  animation: progress-indeterminate 1.5s ease-in-out infinite;
+}
+@keyframes progress-indeterminate {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ============================================================
+   7. SPINNER VARIANTS
+   ============================================================ */
+
+/* Dashed spinner */
+.nui-spinner--dashed {
+  border-style: dashed;
+  border-color: var(--color-border);
+  border-top-color: var(--color-accent-primary);
+}
+
+/* Dual-color spinner */
+.nui-spinner--dual {
+  border-top-color: var(--color-accent-primary);
+  border-right-color: var(--color-accent-secondary);
+}
+
+/* Glow spinner */
+.nui-spinner--glow {
+  box-shadow: var(--glow-primary);
+}
+
+/* ============================================================
+   8. PULSE / BEACON
+   ============================================================ */
+
+/* Pulse beacon */
+.nui-pulse {
+  position: relative;
+}
+.nui-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--color-accent-primary);
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+/* Dot pulse */
+.nui-dot-pulse {
+  position: relative;
+}
+.nui-dot-pulse::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  50%       { opacity: 0.5; transform: translate(-50%,-50%) scale(0.6); }
+}
+
+/* ============================================================
+   9. TOOLTIP / POPOVER ANIMATIONS
+   ============================================================ */
+
+.nui-popover-enter {
+  opacity: 0;
+  transform: scale(0.92) translateY(4px);
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+.nui-popover-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ============================================================
+   10. PAGE TRANSITIONS (Vue / React router support)
+   ============================================================ */
+
+.nui-page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.nui-page-enter-active {
+  transition: opacity var(--duration-slower) var(--ease-out),
+              transform var(--duration-slower) var(--ease-out);
+}
+.nui-page-leave-active {
+  transition: opacity var(--duration-normal) var(--ease-in);
+}
+.nui-page-leave-to {
+  opacity: 0;
+}
+
+/* ============================================================
+   11. DRAWER / SLIDE PANEL
+   ============================================================ */
+
+@keyframes nui-drawer-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+.nui-drawer-right {
+  animation: nui-drawer-in-right var(--duration-slow) var(--ease-out);
+}
+
+@keyframes nui-drawer-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);      opacity: 1; }
+}
+.nui-drawer-left {
+  animation: nui-drawer-in-left var(--duration-slow) var(--ease-out);
+}
+
+/* ============================================================
+   12. LIST STAGGER (for grids/lists)
+   ============================================================ */
+
+.nui-list-stagger {
+  animation: nui-fade-slide-up var(--duration-slower) var(--ease-out) both;
+}
+.nui-list-stagger:nth-child(1)  { animation-delay: 0ms; }
+.nui-list-stagger:nth-child(2)  { animation-delay: 50ms; }
+.nui-list-stagger:nth-child(3)  { animation-delay: 100ms; }
+.nui-list-stagger:nth-child(4)  { animation-delay: 150ms; }
+.nui-list-stagger:nth-child(5)  { animation-delay: 200ms; }
+.nui-list-stagger:nth-child(6)  { animation-delay: 250ms; }
+.nui-list-stagger:nth-child(7)  { animation-delay: 300ms; }
+.nui-list-stagger:nth-child(8)  { animation-delay: 350ms; }
+.nui-list-stagger:nth-child(9)  { animation-delay: 400ms; }
+.nui-list-stagger:nth-child(10) { animation-delay: 450ms; }
+
+/* ============================================================
+   13. HOVER LIFT (generic)
+   ============================================================ */
+
+.nui-lift {
+  transition: transform var(--duration-normal) var(--ease-default),
+              box-shadow var(--duration-normal) var(--ease-default);
+}
+.nui-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.nui-lift:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   14. REDUCED MOTION OVERRIDE
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   15. CSS EASING UTILITY CLASSES
+   ============================================================ */
+
+.nui-ease-default  { transition-timing-function: var(--ease-default); }
+.nui-ease-in       { transition-timing-function: var(--ease-in); }
+.nui-ease-out      { transition-timing-function: var(--ease-out); }
+.nui-ease-spring   { transition-timing-function: var(--ease-spring); }
+.nui-ease-bounce   { transition-timing-function: var(--ease-bounce); }
+
+.nui-duration-fast    { transition-duration: var(--duration-fast); }
+.nui-duration-normal  { transition-duration: var(--duration-normal); }
+.nui-duration-slow    { transition-duration: var(--duration-slow); }
+.nui-duration-slower  { transition-duration: var(--duration-slower); }
