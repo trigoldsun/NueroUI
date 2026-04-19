@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NueroUI Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0B0E17;
+      --bg-secondary: #131829;
+      --bg-elevated: #1A2035;
+      --bg-overlay: #212A45;
+      --bg-input: #0F121E;
+      --bg-hover: #1E2540;
+      --bg-active: #252D4A;
+      --bg-disabled: #0D1019;
+      --accent-primary: #00D4FF;
+      --accent-secondary: #7B61FF;
+      --accent-tertiary: #FF6B35;
+      --functional-success: #00E676;
+      --functional-warning: #FFB300;
+      --functional-danger: #FF3D71;
+      --functional-info: #00D4FF;
+      --text-primary: #F0F4FF;
+      --text-secondary: #8892A8;
+      --text-tertiary: #4B5268;
+      --text-disabled: #2D3348;
+      --border-default: rgba(255,255,255,0.08);
+      --border-hover: rgba(0,212,255,0.35);
+      --border-focus: #00D4FF;
+      --border-active: rgba(123,97,255,0.50);
+      --border-subtle: rgba(255,255,255,0.04);
+      --font-display: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
+      --font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.55);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.65);
+      --shadow-xl: 0 16px 48px rgba(0,0,0,0.75);
+      --shadow-glow: 0 0 24px rgba(0,212,255,0.2);
+      --glow-primary: 0 0 20px rgba(0,212,255,0.35);
+      --glow-secondary: 0 0 20px rgba(123,97,255,0.35);
+      --glow-success: 0 0 16px rgba(0,230,118,0.35);
+      --glow-warning: 0 0 16px rgba(255,179,0,0.35);
+      --glow-danger: 0 0 16px rgba(255,61,113,0.5);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Layout */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-default);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 24px 0;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid var(--border-default);
+      margin-bottom: 24px;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-sub {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-title {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-tertiary);
+      padding: 0 24px;
+      margin-bottom: 8px;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 8px 24px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: all 0.15s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--text-primary);
+      background: var(--bg-hover);
+    }
+
+    .nav-item.active {
+      color: var(--accent-primary);
+      border-left-color: var(--accent-primary);
+      background: rgba(0,212,255,0.05);
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 48px;
+      max-width: 1200px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl);
+      margin-bottom: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(0,212,255,0.03) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--accent-primary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Color Grid */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .color-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .color-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .color-swatch {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .color-info {
+      padding: 12px 16px;
+    }
+
+    .color-name {
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .color-value {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+
+    .color-desc {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    /* Palette Row */
+    .palette-row {
+      display: flex;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .palette-item {
+      flex: 1;
+      padding: 16px 12px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .palette-name {
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .palette-hex {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      opacity: 0.7;
+    }
+
+    /* Typography */
+    .type-sample {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .type-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 8px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+    }
+
+    .type-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--accent-primary);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .type-preview {
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    /* Spacing */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .spacing-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .spacing-bar {
+      background: var(--accent-primary);
+      height: 20px;
+      border-radius: 4px;
+      min-width: 4px;
+      opacity: 0.7;
+    }
+
+    .spacing-value {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    /* Radius */
+    .radius-grid {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .radius-item {
+      text-align: center;
+    }
+
+    .radius-box {
+      width: 64px;
+      height: 64px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      margin-bottom: 8px;
+    }
+
+    .radius-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+
+    /* Shadow */
+    .shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .shadow-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .shadow-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-top: 12px;
+    }
+
+    /* Motion */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .motion-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .motion-name {
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .motion-demo {
+      width: 100%;
+      height: 40px;
+      background: var(--accent-primary);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .motion-value {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--bg-input);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 16px;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      white-space: pre;
+      line-height: 1.7;
+    }
+
+    .code-block .keyword { color: #C792EA; }
+    .code-block .string { color: #C3E88D; }
+    .code-block .property { color: #82AAFF; }
+    .code-block .value { color: #F78C6C; }
+    .code-block .comment { color: #546E7A; }
+
+    /* Copy Button */
+    .copy-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: var(--font-mono);
+    }
+
+    .copy-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .copy-btn.copied {
+      border-color: var(--functional-success);
+      color: var(--functional-success);
+    }
+
+    /* Buttons Preview */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #000;
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: #33DDFF;
+      box-shadow: var(--glow-primary);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-secondary);
+      border-color: var(--accent-secondary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(123,97,255,0.1);
+      box-shadow: var(--glow-secondary);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: var(--border-default);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-hover);
+      color: var(--accent-primary);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--functional-danger);
+      border-color: var(--functional-danger);
+    }
+
+    .btn-danger:hover {
+      background: rgba(255,61,113,0.1);
+      box-shadow: var(--glow-danger);
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    /* Input Preview */
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+    }
+
+    .input-field {
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      transition: all 0.15s;
+      outline: none;
+    }
+
+    .input-field::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .input-field:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    }
+
+    /* Token Table */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .token-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      border-bottom: 1px solid var(--border-default);
+      background: var(--bg-elevated);
+    }
+
+    .token-table td {
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .token-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .token-table tr:hover td {
+      background: var(--bg-hover);
+    }
+
+    .token-table .name {
+      font-family: var(--font-mono);
+      color: var(--accent-primary);
+      font-size: 0.75rem;
+    }
+
+    .token-table .value {
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+
+    /* Tab */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .tab {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-body);
+    }
+
+    .tab:hover { color: var(--text-secondary); }
+    .tab.active { color: var(--accent-primary); border-bottom-color: var(--accent-primary); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 24px; }
+      .hero h1 { font-size: 2rem; }
+      .color-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-overlay); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 0.65rem;
+      font-weight: 500;
+    }
+
+    .badge-cyan { background: rgba(0,212,255,0.1); color: var(--accent-primary); }
+    .badge-purple { background: rgba(123,97,255,0.1); color: var(--accent-secondary); }
+    .badge-orange { background: rgba(255,107,53,0.1); color: var(--accent-tertiary); }
+    .badge-green { background: rgba(0,230,118,0.1); color: var(--functional-success); }
+
+    /* Grid layout for tokens */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Code with language label */
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .code-lang {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="logo">
+        <div class="logo-text">NueroUI</div>
+        <div class="logo-sub">Design System v1.0</div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">Getting Started</div>
+        <a class="nav-item active" href="#overview">Overview</a>
+        <a class="nav-item" href="#colors">Colors</a>
+        <a class="nav-item" href="#typography">Typography</a>
+        <a class="nav-item" href="#spacing">Spacing</a>
+        <a class="nav-item" href="#radius">Radius</a>
+        <a class="nav-item" href="#shadow">Shadow</a>
+        <a class="nav-item" href="#motion">Motion</a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">Tokens</div>
+        <a class="nav-item" href="#tokens">Token Reference</a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">Resources</div>
+        <a class="nav-item" href="#buttons">Buttons</a>
+        <a class="nav-item" href="#inputs">Inputs</a>
+        <a class="nav-item" href="https://github.com/trigoldsun/NueroUI" target="_blank">GitHub ↗</a>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Hero -->
+      <section class="hero" id="overview">
+        <div class="hero-badge">
+          <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+          Design System
+        </div>
+        <h1>NueroUI</h1>
+        <p>深海蓝黑 · 科技青 · 暗夜系设计系统。融合东方意境与现代科技感，为 AI Native 产品打造的专业 UI 组件库。</p>
+        <div class="hero-tags">
+          <span class="tag">CSS Variables</span>
+          <span class="tag">React / Vue / Flutter</span>
+          <span class="tag">SwiftUI / Compose</span>
+          <span class="tag">W3C DTCG</span>
+          <span class="tag">120+ Icons</span>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">73</div>
+            <div class="stat-label">Design Tokens</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">120</div>
+            <div class="stat-label">SVG Icons</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Platforms</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section class="section" id="colors">
+        <div class="section-header">
+          <h2 class="section-title">Colors 色彩系统</h2>
+          <p class="section-desc">深海蓝黑为基底，科技青为主色调，搭配能量紫与警示橙，构建层次分明的暗色系色彩系统。</p>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em;">Background 背景色</h3>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-swatch" style="background:#0B0E17;color:#8892A8;">#0B0E17</div>
+            <div class="color-info">
+              <div class="color-name">Primary</div>
+              <div class="color-value">#0B0E17</div>
+              <div class="color-desc">深海蓝黑·主背景</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#131829;color:#8892A8;">#131829</div>
+            <div class="color-info">
+              <div class="color-name">Secondary</div>
+              <div class="color-value">#131829</div>
+              <div class="color-desc">卡片/面板</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#1A2035;color:#8892A8;">#1A2035</div>
+            <div class="color-info">
+              <div class="color-name">Elevated</div>
+              <div class="color-value">#1A2035</div>
+              <div class="color-desc">悬浮层</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#212A45;color:#8892A8;">#212A45</div>
+            <div class="color-info">
+              <div class="color-name">Overlay</div>
+              <div class="color-value">#212A45</div>
+              <div class="color-desc">模态遮罩</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#0F121E;color:#8892A8;">#0F121E</div>
+            <div class="color-info">
+              <div class="color-name">Input</div>
+              <div class="color-value">#0F121E</div>
+              <div class="color-desc">输入框</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#1E2540;color:#8892A8;">#1E2540</div>
+            <div class="color-info">
+              <div class="color-name">Hover</div>
+              <div class="color-value">#1E2540</div>
+              <div class="color-desc">悬停态</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#252D4A;color:#8892A8;">#252D4A</div>
+            <div class="color-info">
+              <div class="color-name">Active</div>
+              <div class="color-value">#252D4A</div>
+              <div class="color-desc">激活态</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#0D1019;color:#8892A8;">#0D1019</div>
+            <div class="color-info">
+              <div class="color-name">Disabled</div>
+              <div class="color-value">#0D1019</div>
+              <div class="color-desc">禁用态</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin:32px 0 16px;text-transform:uppercase;letter-spacing:0.08em;">Accent 主色调</h3>
+        <div class="grid-3">
+          <div class="color-card">
+            <div class="color-swatch" style="background:#00D4FF;color:#000;font-weight:600;">科技青</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-cyan">Primary</span> 科技青</div>
+              <div class="color-value">#00D4FF</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#7B61FF;color:#fff;font-weight:600;">能量紫</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-purple">Secondary</span> 能量紫</div>
+              <div class="color-value">#7B61FF</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#FF6B35;color:#fff;font-weight:600;">警示橙</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-orange">Tertiary</span> 警示橙</div>
+              <div class="color-value">#FF6B35</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin:32px 0 16px;text-transform:uppercase;letter-spacing:0.08em;">Functional 功能色</h3>
+        <div class="grid-4">
+          <div class="color-card">
+            <div class="color-swatch" style="background:#00E676;color:#000;font-weight:600;">Success</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-green">Success</span></div>
+              <div class="color-value">#00E676</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#FFB300;color:#000;font-weight:600;">Warning</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-orange">Warning</span></div>
+              <div class="color-value">#FFB300</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#FF3D71;color:#fff;font-weight:600;">Danger</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-cyan" style="background:rgba(255,61,113,0.1);color:#FF3D71;">Danger</span></div>
+              <div class="color-value">#FF3D71</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#00D4FF;color:#000;font-weight:600;">Info</div>
+            <div class="color-info">
+              <div class="color-name"><span class="badge badge-cyan">Info</span></div>
+              <div class="color-value">#00D4FF</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS Variables Code -->
+        <div class="code-header">
+          <span class="code-lang">CSS Variables</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">
+          <pre>:root {
+  <span class="property">--color-background-primary</span>: <span class="value">#0B0E17</span>;
+  <span class="property">--color-background-secondary</span>: <span class="value">#131829</span>;
+  <span class="property">--color-accent-primary</span>: <span class="value">#00D4FF</span>;
+  <span class="property">--color-accent-secondary</span>: <span class="value">#7B61FF</span>;
+  <span class="property">--color-accent-tertiary</span>: <span class="value">#FF6B35</span>;
+  <span class="property">--color-functional-success</span>: <span class="value">#00E676</span>;
+  <span class="property">--color-functional-warning</span>: <span class="value">#FFB300</span>;
+  <span class="property">--color-functional-danger</span>: <span class="value">#FF3D71</span>;
+}</pre>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="section" id="typography">
+        <div class="section-header">
+          <h2 class="section-title">Typography 字体系统</h2>
+          <p class="section-desc">Outfit + Noto Sans SC 双语系搭配，JetBrains Mono 等宽字体，构造清晰的视觉层次。</p>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-meta">
+            <span>Display / Outfit</span>
+            <span>font-family</span>
+          </div>
+          <div class="type-name">Display Font — 标题展示</div>
+          <div class="type-preview" style="font-family:'Outfit',sans-serif; font-size:2.5rem; font-weight:700; letter-spacing:-0.03em;">深海蓝黑 · 科技青 · NueroUI</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-meta">
+            <span>Body / Inter + Noto Sans SC</span>
+            <span>font-family</span>
+          </div>
+          <div class="type-name">Body Font — 正文内容</div>
+          <div class="type-preview" style="font-size:1.125rem; font-family:'Inter','PingFang SC','Microsoft YaHei',sans-serif;">NueroUI 融合东方意境与现代科技感，为 AI Native 产品打造的专业 UI 组件库。</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-meta">
+            <span>JetBrains Mono</span>
+            <span>font-family</span>
+          </div>
+          <div class="type-name">Mono Font — 代码等宽</div>
+          <div class="type-preview" style="font-family:'JetBrains Mono',monospace; font-size:0.9rem; color: var(--accent-primary);">const token = "--color-accent-primary: #00D4FF";</div>
+        </div>
+
+        <!-- Type Scale -->
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin:32px 0 16px;text-transform:uppercase;letter-spacing:0.08em;">Type Scale 字号阶梯</h3>
+        <div class="grid-2">
+          <div class="type-sample">
+            <div class="type-name">5xl — 3rem / 48px</div>
+            <div class="type-preview" style="font-size:3rem;font-weight:700;line-height:1.1;">深海蓝黑</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">4xl — 2.5rem / 40px</div>
+            <div class="type-preview" style="font-size:2.5rem;font-weight:700;line-height:1.1;">深海蓝黑</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">3xl — 2rem / 32px</div>
+            <div class="type-preview" style="font-size:2rem;font-weight:600;">NueroUI Design System</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">2xl — 1.5rem / 24px</div>
+            <div class="type-preview" style="font-size:1.5rem;font-weight:600;">NueroUI Design System</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">xl — 1.25rem / 20px</div>
+            <div class="type-preview" style="font-size:1.25rem;font-weight:500;">NueroUI Design System</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">lg — 1.125rem / 18px</div>
+            <div class="type-preview" style="font-size:1.125rem;">NueroUI Design System 融合东方意境</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">base — 1rem / 16px</div>
+            <div class="type-preview" style="font-size:1rem;">NueroUI Design System 融合东方意境与现代科技感</div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">sm — 0.875rem / 14px</div>
+            <div class="type-preview" style="font-size:0.875rem;color:var(--text-secondary);">NueroUI Design System 融合东方意境与现代科技感</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing -->
+      <section class="section" id="spacing">
+        <div class="section-header">
+          <h2 class="section-title">Spacing 间距系统</h2>
+          <p class="section-desc">基于 4px 基准网格的间距系统，0-1-2-3-4-5-6-7-8-10-12-14-16-20-24-32 共16级。</p>
+        </div>
+
+        <div style="max-width:600px;">
+          <div class="spacing-row"><div class="spacing-label">px</div><div class="spacing-bar" style="width:4px;"></div><div class="spacing-value">0.0625rem / 1px</div></div>
+          <div class="spacing-row"><div class="spacing-label">0.5</div><div class="spacing-bar" style="width:8px;"></div><div class="spacing-value">0.125rem / 2px</div></div>
+          <div class="spacing-row"><div class="spacing-label">1</div><div class="spacing-bar" style="width:16px;"></div><div class="spacing-value">0.25rem / 4px</div></div>
+          <div class="spacing-row"><div class="spacing-label">1.5</div><div class="spacing-bar" style="width:24px;"></div><div class="spacing-value">0.375rem / 6px</div></div>
+          <div class="spacing-row"><div class="spacing-label">2</div><div class="spacing-bar" style="width:32px;"></div><div class="spacing-value">0.5rem / 8px</div></div>
+          <div class="spacing-row"><div class="spacing-label">2.5</div><div class="spacing-bar" style="width:40px;"></div><div class="spacing-value">0.625rem / 10px</div></div>
+          <div class="spacing-row"><div class="spacing-label">3</div><div class="spacing-bar" style="width:48px;"></div><div class="spacing-value">0.75rem / 12px</div></div>
+          <div class="spacing-row"><div class="spacing-label">3.5</div><div class="spacing-bar" style="width:56px;"></div><div class="spacing-value">0.875rem / 14px</div></div>
+          <div class="spacing-row"><div class="spacing-label">4</div><div class="spacing-bar" style="width:64px;"></div><div class="spacing-value">1rem / 16px</div></div>
+          <div class="spacing-row"><div class="spacing-label">5</div><div class="spacing-bar" style="width:80px;"></div><div class="spacing-value">1.25rem / 20px</div></div>
+          <div class="spacing-row"><div class="spacing-label">6</div><div class="spacing-bar" style="width:96px;"></div><div class="spacing-value">1.5rem / 24px</div></div>
+          <div class="spacing-row"><div class="spacing-label">8</div><div class="spacing-bar" style="width:128px;"></div><div class="spacing-value">2rem / 32px</div></div>
+          <div class="spacing-row"><div class="spacing-label">12</div><div class="spacing-bar" style="width:192px;"></div><div class="spacing-value">3rem / 48px</div></div>
+          <div class="spacing-row"><div class="spacing-label">16</div><div class="spacing-bar" style="width:256px;"></div><div class="spacing-value">4rem / 64px</div></div>
+          <div class="spacing-row"><div class="spacing-label">24</div><div class="spacing-bar" style="width:384px;"></div><div class="spacing-value">6rem / 96px</div></div>
+        </div>
+      </section>
+
+      <!-- Radius -->
+      <section class="section" id="radius">
+        <div class="section-header">
+          <h2 class="section-title">Border Radius 圆角系统</h2>
+          <p class="section-desc">6级圆角系统，从锋利的 0px 到圆润的 full pill 形状。</p>
+        </div>
+        <div class="radius-grid">
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:0;"></div>
+            <div class="radius-label">none · 0</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:4px;"></div>
+            <div class="radius-label">sm · 4px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:8px;"></div>
+            <div class="radius-label">md · 8px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:16px;"></div>
+            <div class="radius-label">lg · 16px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:24px;"></div>
+            <div class="radius-label">xl · 24px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:32px;"></div>
+            <div class="radius-label">2xl · 32px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:9999px;width:64px;height:32px;"></div>
+            <div class="radius-label">full · 9999px</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shadow -->
+      <section class="section" id="shadow">
+        <div class="section-header">
+          <h2 class="section-title">Shadow 阴影系统</h2>
+          <p class="section-desc">从内阴影到外阴影，包括发光特效，构建多层次的暗色空间感。</p>
+        </div>
+        <div class="shadow-grid">
+          <div class="shadow-card" style="box-shadow:var(--shadow-xs);">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">xs — 1px 2px</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--shadow-sm);">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">sm — 1px 4px</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--shadow-md);">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">md — 4px 12px</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--shadow-lg);">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">lg — 8px 24px</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--shadow-xl);">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">xl — 16px 48px</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--shadow-inner,inset 0 1px 3px rgba(0,0,0,0.4));">
+            <div style="height:40px;background:var(--bg-elevated);border-radius:8px;"></div>
+            <div class="shadow-label">inner — inset</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin:32px 0 16px;text-transform:uppercase;letter-spacing:0.08em;">Glow Effects 发光特效</h3>
+        <div class="shadow-grid">
+          <div class="shadow-card" style="box-shadow:var(--glow-primary);">
+            <div style="height:40px;background:var(--accent-primary);border-radius:8px;"></div>
+            <div class="shadow-label">glow-primary · #00D4FF</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--glow-secondary);">
+            <div style="height:40px;background:var(--accent-secondary);border-radius:8px;"></div>
+            <div class="shadow-label">glow-secondary · #7B61FF</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--glow-success);">
+            <div style="height:40px;background:var(--functional-success);border-radius:8px;"></div>
+            <div class="shadow-label">glow-success · #00E676</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--glow-warning);">
+            <div style="height:40px;background:var(--functional-warning);border-radius:8px;"></div>
+            <div class="shadow-label">glow-warning · #FFB300</div>
+          </div>
+          <div class="shadow-card" style="box-shadow:var(--glow-danger);">
+            <div style="height:40px;background:var(--functional-danger);border-radius:8px;"></div>
+            <div class="shadow-label">glow-danger · #FF3D71</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Motion -->
+      <section class="section" id="motion">
+        <div class="section-header">
+          <h2 class="section-title">Motion 动效系统</h2>
+          <p class="section-desc">6档时长 + 6种缓动曲线，覆盖从即时反馈到戏剧性过渡的所有场景。</p>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.08em;">Duration 时长</h3>
+        <div class="motion-grid">
+          <div class="motion-card">
+            <div class="motion-name">instant · 0ms</div>
+            <div class="motion-demo" style="transition:all 0ms;"></div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-name">fast · 80ms</div>
+            <div class="motion-demo" style="transition:all 80ms;"></div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-name">normal · 150ms</div>
+            <div class="motion-demo" style="transition:all 150ms;"></div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-name">slow · 250ms</div>
+            <div class="motion-demo" style="transition:all 250ms;"></div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-name">slower · 400ms</div>
+            <div class="motion-demo" style="transition:all 400ms;"></div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-name">slowest · 600ms</div>
+            <div class="motion-demo" style="transition:all 600ms;"></div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.8rem;color:var(--text-tertiary);margin:32px 0 16px;text-transform:uppercase;letter-spacing:0.08em;">Easing 缓动曲线</h3>
+        <div class="grid-3">
+          <div class="type-sample">
+            <div class="type-name">default · cubic-bezier(0.4, 0, 0.2, 1)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);"></div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">in · cubic-bezier(0.4, 0, 1, 1)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.25s cubic-bezier(0.4,0,1,1);"></div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">out · cubic-bezier(0, 0, 0.2, 1)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.25s cubic-bezier(0,0,0.2,1);"></div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">inOut · cubic-bezier(0.4, 0, 0.2, 1)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);"></div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">spring · cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);"></div>
+          </div>
+          <div class="type-sample">
+            <div class="type-name">bounce · cubic-bezier(0.68, -0.55, 0.265, 1.55)</div>
+            <div style="height:40px;background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary));border-radius:8px;transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section class="section" id="buttons">
+        <div class="section-header">
+          <h2 class="section-title">Buttons 按钮组件</h2>
+          <p class="section-desc">Primary / Secondary / Ghost / Danger 四种变体，适配不同场景的交互需求。</p>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-name" style="margin-bottom:16px;">Solid 实体按钮</div>
+          <div class="btn-row">
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-danger">Danger</button>
+          </div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-name" style="margin-bottom:16px;">Ghost 幽灵按钮</div>
+          <div class="btn-row">
+            <button class="btn btn-ghost">Ghost Button</button>
+            <button class="btn btn-ghost">Cancel</button>
+            <button class="btn btn-ghost">Learn More</button>
+          </div>
+        </div>
+
+        <!-- CSS Code -->
+        <div class="code-header">
+          <span class="code-lang">CSS</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">
+          <pre><span class="comment">/* Button CSS Variables */</span>
+<span class="property">--button-height-sm</span>: <span class="value">32px</span>;
+<span class="property">--button-height-md</span>: <span class="value">40px</span>;
+<span class="property">--button-height-lg</span>: <span class="value">48px</span>;
+<span class="property">--button-height-xl</span>: <span class="value">56px</span>;
+
+<span class="comment">/* Button Styles */</span>
+<span class="keyword">.btn</span> {
+  <span class="property">padding</span>: <span class="string">10px 20px</span>;
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+  <span class="property">font-weight</span>: <span class="value">500</span>;
+  <span class="property">transition</span>: <span class="value">all 150ms cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+
+<span class="keyword">.btn-primary</span> {
+  <span class="property">background</span>: <span class="value">var(--color-accent-primary)</span>;
+  <span class="property">color</span>: <span class="value">#000</span>;
+}
+
+<span class="keyword">.btn-primary:hover</span> {
+  <span class="property">box-shadow</span>: <span class="value">0 0 20px rgba(0,212,255,0.35)</span>;
+}</pre>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section class="section" id="inputs">
+        <div class="section-header">
+          <h2 class="section-title">Inputs 输入框</h2>
+          <p class="section-desc">暗色沉浸式输入框，focus 态以科技青边框高亮，配合内阴影营造凹陷感。</p>
+        </div>
+
+        <div class="input-row">
+          <input type="text" class="input-field" placeholder="Default Input — 输入任意内容">
+          <input type="text" class="input-field" placeholder="Focus Me — 点击获取焦点" style="border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(0,212,255,0.1);">
+          <input type="text" class="input-field" value="Filled Input — 已填值" readonly>
+          <input type="text" class="input-field" placeholder="Disabled Input" disabled style="opacity:0.4;cursor:not-allowed;">
+          <input type="text" class="input-field" placeholder="Error State — 错误状态" style="border-color:var(--functional-danger);box-shadow:0 0 0 3px rgba(255,61,113,0.1);">
+        </div>
+
+        <div class="code-header" style="margin-top:24px;">
+          <span class="code-lang">CSS</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <div class="code-block">
+          <pre><span class="keyword">.input-field</span> {
+  <span class="property">padding</span>: <span class="string">10px 14px</span>;
+  <span class="property">background</span>: <span class="value">var(--color-background-input)</span>;
+  <span class="property">border</span>: <span class="value">1px solid var(--color-border-default)</span>;
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+  <span class="property">color</span>: <span class="value">var(--color-text-primary)</span>;
+  <span class="property">transition</span>: <span class="value">all 150ms ease</span>;
+}
+
+<span class="keyword">.input-field:focus</span> {
+  <span class="property">outline</span>: <span class="value">none</span>;
+  <span class="property">border-color</span>: <span class="value">var(--color-border-focus)</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 0 0 3px rgba(0,212,255,0.1)</span>;
+}</pre>
+        </div>
+      </section>
+
+      <!-- Token Reference -->
+      <section class="section" id="tokens">
+        <div class="section-header">
+          <h2 class="section-title">Token Reference 完整 Token 清单</h2>
+          <p class="section-desc">所有 73 个 Design Tokens 完整引用，含 CSS 变量名与原始值。</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab(this, 'tab-colors')">Colors</button>
+          <button class="tab" onclick="switchTab(this, 'tab-type')">Typography</button>
+          <button class="tab" onclick="switchTab(this, 'tab-space')">Spacing</button>
+          <button class="tab" onclick="switchTab(this, 'tab-motion')">Motion</button>
+          <button class="tab" onclick="switchTab(this, 'tab-other')">Other</button>
+        </div>
+
+        <div class="tab-content active" id="tab-colors">
+          <table class="token-table">
+            <thead><tr><th>Token Name</th><th>Value</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td class="name">--color-background-primary</td><td class="value">#0B0E17</td><td>深海蓝黑·主背景</td></tr>
+              <tr><td class="name">--color-background-secondary</td><td class="value">#131829</td><td>卡片/面板</td></tr>
+              <tr><td class="name">--color-background-elevated</td><td class="value">#1A2035</td><td>悬浮层</td></tr>
+              <tr><td class="name">--color-background-overlay</td><td class="value">#212A45</td><td>模态遮罩</td></tr>
+              <tr><td class="name">--color-background-input</td><td class="value">#0F121E</td><td>输入框</td></tr>
+              <tr><td class="name">--color-background-hover</td><td class="value">#1E2540</td><td>悬停态</td></tr>
+              <tr><td class="name">--color-background-active</td><td class="value">#252D4A</td><td>激活态</td></tr>
+              <tr><td class="name">--color-background-disabled</td><td class="value">#0D1019</td><td>禁用态</td></tr>
+              <tr><td class="name">--color-accent-primary</td><td class="value">#00D4FF</td><td>科技青</td></tr>
+              <tr><td class="name">--color-accent-secondary</td><td class="value">#7B61FF</td><td>能量紫</td></tr>
+              <tr><td class="name">--color-accent-tertiary</td><td class="value">#FF6B35</td><td>警示橙</td></tr>
+              <tr><td class="name">--color-functional-success</td><td class="value">#00E676</td><td>成功</td></tr>
+              <tr><td class="name">--color-functional-warning</td><td class="value">#FFB300</td><td>警告</td></tr>
+              <tr><td class="name">--color-functional-danger</td><td class="value">#FF3D71</td><td>危险</td></tr>
+              <tr><td class="name">--color-functional-info</td><td class="value">#00D4FF</td><td>信息</td></tr>
+              <tr><td class="name">--color-text-primary</td><td class="value">#F0F4FF</td><td>主要文字</td></tr>
+              <tr><td class="name">--color-text-secondary</td><td class="value">#8892A8</td><td>次要文字</td></tr>
+              <tr><td class="name">--color-text-tertiary</td><td class="value">#4B5268</td><td>辅助文字</td></tr>
+              <tr><td class="name">--color-text-disabled</td><td class="value">#2D3348</td><td>禁用文字</td></tr>
+              <tr><td class="name">--color-border-default</td><td class="value">rgba(255,255,255,0.08)</td><td>默认边框</td></tr>
+              <tr><td class="name">--color-border-hover</td><td class="value">rgba(0,212,255,0.35)</td><td>悬停边框</td></tr>
+              <tr><td class="name">--color-border-focus</td><td class="value">#00D4FF</td><td>聚焦边框</td></tr>
+              <tr><td class="name">--color-border-active</td><td class="value">rgba(123,97,255,0.50)</td><td>激活边框</td></tr>
+              <tr><td class="name">--color-border-subtle</td><td class="value">rgba(255,255,255,0.04)</td><td>微妙边框</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-content" id="tab-type">
+          <table class="token-table">
+            <thead><tr><th>Token Name</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="name">--typography-font-display</td><td class="value">'Outfit', 'Noto Sans SC', system-ui, sans-serif</td></tr>
+              <tr><td class="name">--typography-font-body</td><td class="value">'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif</td></tr>
+              <tr><td class="name">--typography-font-mono</td><td class="value">'JetBrains Mono', 'Fira Code', monospace</td></tr>
+              <tr><td class="name">--typography-size-2xs</td><td class="value">0.625rem</td></tr>
+              <tr><td class="name">--typography-size-xs</td><td class="value">0.75rem</td></tr>
+              <tr><td class="name">--typography-size-sm</td><td class="value">0.875rem</td></tr>
+              <tr><td class="name">--typography-size-base</td><td class="value">1rem</td></tr>
+              <tr><td class="name">--typography-size-lg</td><td class="value">1.125rem</td></tr>
+              <tr><td class="name">--typography-size-xl</td><td class="value">1.25rem</td></tr>
+              <tr><td class="name">--typography-size-2xl</td><td class="value">1.5rem</td></tr>
+              <tr><td class="name">--typography-size-3xl</td><td class="value">2rem</td></tr>
+              <tr><td class="name">--typography-size-4xl</td><td class="value">2.5rem</td></tr>
+              <tr><td class="name">--typography-size-5xl</td><td class="value">3rem</td></tr>
+              <tr><td class="name">--typography-weight-light</td><td class="value">300</td></tr>
+              <tr><td class="name">--typography-weight-normal</td><td class="value">400</td></tr>
+              <tr><td class="name">--typography-weight-medium</td><td class="value">500</td></tr>
+              <tr><td class="name">--typography-weight-semibold</td><td class="value">600</td></tr>
+              <tr><td class="name">--typography-weight-bold</td><td class="value">700</td></tr>
+              <tr><td class="name">--typography-lineHeight-tight</td><td class="value">1.25</td></tr>
+              <tr><td class="name">--typography-lineHeight-normal</td><td class="value">1.5</td></tr>
+              <tr><td class="name">--typography-lineHeight-relaxed</td><td class="value">1.625</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-content" id="tab-space">
+          <table class="token-table">
+            <thead><tr><th>Token Name</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="name">--spacing-px</td><td class="value">0.0625rem</td></tr>
+              <tr><td class="name">--spacing-0</td><td class="value">0</td></tr>
+              <tr><td class="name">--spacing-0-5</td><td class="value">0.125rem</td></tr>
+              <tr><td class="name">--spacing-1</td><td class="value">0.25rem</td></tr>
+              <tr><td class="name">--spacing-1-5</td><td class="value">0.375rem</td></tr>
+              <tr><td class="name">--spacing-2</td><td class="value">0.5rem</td></tr>
+              <tr><td class="name">--spacing-3</td><td class="value">0.75rem</td></tr>
+              <tr><td class="name">--spacing-4</td><td class="value">1rem</td></tr>
+              <tr><td class="name">--spacing-5</td><td class="value">1.25rem</td></tr>
+              <tr><td class="name">--spacing-6</td><td class="value">1.5rem</td></tr>
+              <tr><td class="name">--spacing-8</td><td class="value">2rem</td></tr>
+              <tr><td class="name">--spacing-10</td><td class="value">2.5rem</td></tr>
+              <tr><td class="name">--spacing-12</td><td class="value">3rem</td></tr>
+              <tr><td class="name">--spacing-16</td><td class="value">4rem</td></tr>
+              <tr><td class="name">--spacing-20</td><td class="value">5rem</td></tr>
+              <tr><td class="name">--spacing-24</td><td class="value">6rem</td></tr>
+              <tr><td class="name">--spacing-32</td><td class="value">8rem</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-content" id="tab-motion">
+          <table class="token-table">
+            <thead><tr><th>Token Name</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="name">--motion-duration-instant</td><td class="value">0ms</td></tr>
+              <tr><td class="name">--motion-duration-fast</td><td class="value">80ms</td></tr>
+              <tr><td class="name">--motion-duration-normal</td><td class="value">150ms</td></tr>
+              <tr><td class="name">--motion-duration-slow</td><td class="value">250ms</td></tr>
+              <tr><td class="name">--motion-duration-slower</td><td class="value">400ms</td></tr>
+              <tr><td class="name">--motion-duration-slowest</td><td class="value">600ms</td></tr>
+              <tr><td class="name">--motion-easing-default</td><td class="value">cubic-bezier(0.4, 0, 0.2, 1)</td></tr>
+              <tr><td class="name">--motion-easing-in</td><td class="value">cubic-bezier(0.4, 0, 1, 1)</td></tr>
+              <tr><td class="name">--motion-easing-out</td><td class="value">cubic-bezier(0, 0, 0.2, 1)</td></tr>
+              <tr><td class="name">--motion-easing-spring</td><td class="value">cubic-bezier(0.34, 1.56, 0.64, 1)</td></tr>
+              <tr><td class="name">--motion-easing-bounce</td><td class="value">cubic-bezier(0.68, -0.55, 0.265, 1.55)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-content" id="tab-other">
+          <table class="token-table">
+            <thead><tr><th>Token Name</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td class="name">--radius-sm</td><td class="value">4px</td></tr>
+              <tr><td class="name">--radius-md</td><td class="value">8px</td></tr>
+              <tr><td class="name">--radius-lg</td><td class="value">16px</td></tr>
+              <tr><td class="name">--radius-xl</td><td class="value">24px</td></tr>
+              <tr><td class="name">--radius-2xl</td><td class="value">32px</td></tr>
+              <tr><td class="name">--radius-full</td><td class="value">9999px</td></tr>
+              <tr><td class="name">--shadow-xs</td><td class="value">0 1px 2px rgba(0,0,0,0.4)</td></tr>
+              <tr><td class="name">--shadow-sm</td><td class="value">0 1px 4px rgba(0,0,0,0.5)</td></tr>
+              <tr><td class="name">--shadow-md</td><td class="value">0 4px 12px rgba(0,0,0,0.55)</td></tr>
+              <tr><td class="name">--shadow-lg</td><td class="value">0 8px 24px rgba(0,0,0,0.65)</td></tr>
+              <tr><td class="name">--shadow-xl</td><td class="value">0 16px 48px rgba(0,0,0,0.75)</td></tr>
+              <tr><td class="name">--glow-primary</td><td class="value">0 0 20px rgba(0,212,255,0.35)</td></tr>
+              <tr><td class="name">--glow-secondary</td><td class="value">0 0 20px rgba(123,97,255,0.35)</td></tr>
+              <tr><td class="name">--component-zindex-dropdown</td><td class="value">100</td></tr>
+              <tr><td class="name">--component-zindex-modal</td><td class="value">400</td></tr>
+              <tr><td class="name">--component-zindex-toast</td><td class="value">500</td></tr>
+              <tr><td class="name">--component-zindex-tooltip</td><td class="value">600</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function switchTab(btn, id) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+
+    function copyCode(btn) {
+      const block = btn.closest('.code-block, .type-sample');
+      const pre = block.querySelector('pre');
+      if (!pre) return;
+      navigator.clipboard.writeText(pre.textContent).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('.nav-item[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Hover effect for color cards
+    document.querySelectorAll('.color-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const value = card.querySelector('.color-value');
+        if (value) {
+          navigator.clipboard.writeText(value.textContent);
+          const original = card.querySelector('.color-name').textContent;
+          card.querySelector('.color-name').textContent = 'Copied!';
+          setTimeout(() => { card.querySelector('.color-name').textContent = original; }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
