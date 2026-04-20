@@ -57,7 +57,7 @@ class NueroRadius {
 
 class NueroTypography {
   static const display = TextStyle(fontFamily: 'Outfit', fontWeight: FontWeight.w600);
-  static const body    = TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w400);
+  static const body    = TextStyle(fontFamily: 'Source Sans 3', fontWeight: FontWeight.w400);
   static const mono    = TextStyle(fontFamily: 'JetBrains Mono', fontWeight: FontWeight.w400);
 }
 
@@ -72,7 +72,7 @@ class NueroTheme {
       surface: NueroColors.bgSecondary,
       error: NueroColors.danger,
     ),
-    fontFamily: 'Inter',
+    fontFamily: 'Source Sans 3',
     appBarTheme: AppBarTheme(backgroundColor: NueroColors.bgSecondary),
     cardTheme: CardTheme(
       color: NueroColors.bgSecondary,

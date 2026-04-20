@@ -36,7 +36,7 @@ export const tokens = {
   },
   fonts: {
     display: "'Outfit', 'Noto Sans SC', system-ui, sans-serif",
-    body:    "'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif",
+    body:    "'Source Sans 3', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif",
     mono:    "'JetBrains Mono', 'Fira Code', monospace",
   },
   radii: {
@@ -620,7 +620,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ items }) => (
 
 export const GlobalStyles = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
     @keyframes nui-spin-anim { to { transform: rotate(360deg); } }
     @keyframes skeleton-shimmer {

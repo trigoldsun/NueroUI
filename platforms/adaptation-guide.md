@@ -256,18 +256,18 @@ const setTheme = (theme: string) => {
 
 ```css
 /* 中文优先 */
---font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei',
+--font-body: 'Source Sans 3', 'PingFang SC', 'Microsoft YaHei',
              'Hiragino Sans GB', system-ui, sans-serif;
 
 /* 日文 */
---font-body-ja: 'Inter', 'Hiragino Kaku Gothic ProN',
+--font-body-ja: 'Source Sans 3', 'Hiragino Kaku Gothic ProN',
                 'Yu Gothic', system-ui, sans-serif;
 
 /* 韩文 */
---font-body-ko: 'Inter', 'Malgun Gothic', system-ui, sans-serif;
+--font-body-ko: 'Source Sans 3', 'Malgun Gothic', system-ui, sans-serif;
 
 /* 西里尔文 */
---font-body-cyrillic: 'Inter', 'Roboto', system-ui, sans-serif;
+--font-body-cyrillic: 'Source Sans 3', 'Roboto', system-ui, sans-serif;
 ```
 
 ---

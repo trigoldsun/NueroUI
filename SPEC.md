@@ -89,6 +89,16 @@ NueroUI 是一套面向全硬件平台的设计语言体系。视觉以深邃蓝
 
 ## 三、字体系统
 
+## 字体授权
+
+| 字体 | 用途 | 授权 | 商业可用 |
+|------|------|------|----------|
+| Outfit | 标题字体 | SIL OFL 1.1 | ✅ |
+| Source Sans 3 | 正文字体 | SIL OFL 1.1 | ✅ |
+| JetBrains Mono | 等宽字体 | SIL OFL 1.1 | ✅ |
+
+> 所有字体均通过 Google Fonts 加载，授权均为 SIL Open Font License 1.1，可免费用于商业产品。
+
 ### 字体栈
 
 ```css
@@ -96,7 +106,7 @@ NueroUI 是一套面向全硬件平台的设计语言体系。视觉以深邃蓝
 --font-display: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
 
 /* 正文字体 */
---font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+--font-body: 'Source Sans 3', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
 
 /* 等宽字体 */
 --font-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
@@ -280,15 +290,16 @@ NueroUI 是一套面向全硬件平台的设计语言体系。视觉以深邃蓝
 
 ## 十、跨平台适配策略
 
-### 断点
+### 断点（移动优先）
 
 | 名称 | 宽度 | 设备 |
 |------|------|------|
-| xs | < 640px | 手机 |
-| sm | 640px - 767px | 大手机 |
-| md | 768px - 1023px | 平板 |
-| lg | 1024px - 1439px | 桌面 |
-| xl | ≥ 1440px | 大屏 |
+| xs | < 320px | 小手机 |
+| sm | 320px - 639px | 手机 |
+| md | 640px - 767px | 大手机/小平板 |
+| lg | 768px - 1023px | 平板 |
+| xl | 1024px - 1439px | 桌面 |
+| 2xl | ≥ 1440px | 大屏 |
 
 ### 平台变体
 

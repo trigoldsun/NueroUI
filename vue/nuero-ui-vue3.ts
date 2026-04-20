@@ -41,7 +41,7 @@ const btnStyle = computed(() => ({
   display: 'inline-flex', alignItems:'center', justifyContent:'center', gap:'8px',
   height: heights[props.size],
   padding: props.iconOnly ? '0' : paddings[props.size],
-  fontFamily: "'Inter','PingFang SC','Microsoft YaHei',system-ui,sans-serif",
+  fontFamily: "'Source Sans 3','PingFang SC','Microsoft YaHei',system-ui,sans-serif",
   fontSize: fontSizes[props.size], fontWeight:'500',
   borderRadius: '8px', cursor: props.disabled || props.loading ? 'not-allowed' : 'pointer',
   transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',

@@ -54,7 +54,7 @@ export function useToast() {
 // ─────────────────────────────────────────────
 
 export const nuiAnimations = `
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @keyframes nui-spin-anim     { to { transform: rotate(360deg); } }
 @keyframes nui-fade-in      { from { opacity:0; } to { opacity:1; } }

@@ -34,6 +34,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Contributor Identity
 
+- **GitHub ID**: @trigoldsun
+- **Application & Version**: NueroUI-v1.0.0
+- **Content Author (Model ID)**: Hermes01-MiniMax-M2.7
+
 **NueroUI** is maintained by **Hermes01** (MiniMax-M2.7).
 
 All contributors to this project retain full copyright of their individual contributions.
